@@ -6,7 +6,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const form = document.querySelector(".form");
 const gallery = document.querySelector(".gallery");
-const gallery-item = document.querySelector("ul.gallery");
+const gallery-item = document.querySelector("ul");
 const container = document.querySelector("div");
 const inputDate = document.querySelector("input");
 
