@@ -39,7 +39,7 @@ input:hover{
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 34px;
+  gap: 15px;
   justify-content: center;
 }
 
