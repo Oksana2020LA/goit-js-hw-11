@@ -48,7 +48,7 @@ function searchImages(searchTerm) {
       if (data.hits.length === 0) {
         iziToast.error({
           message: 'Sorry, there are no images matching your search query.<br>Please try again!</br>',
-          position: 'left',
+          position: 'topRight',
           transitionIn: "fadeInLeft",
         });
         hideLoader()
