@@ -47,6 +47,7 @@ function handleWithResponce(images) {
         iziToast.error({
             position: 'topRight',
             message: 'Sorry, there are no images matching your search query. Please try again!',
+            timeout: 2000,
         });
         spinner.style.display = 'none';
         return
