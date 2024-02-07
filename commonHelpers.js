@@ -1,9 +1,24 @@
-import{i as l,S as u}from"./assets/vendor-46aac873.js";(function(){const i=document.createElement("link").relList;if(i&&i.supports&&i.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const r of t.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&o(r)}).observe(document,{childList:!0,subtree:!0});function s(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?t.credentials="include":e.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function o(e){if(e.ep)return;e.ep=!0;const t=s(e);fetch(e.href,t)}})();const m=document.querySelector(".form"),c=document.querySelector(".gallery"),p=document.querySelector("div"),d=document.querySelector("input"),f=()=>{const n=document.createElement("span");n.classList.add("loader"),p.append(n)},a=()=>{const n=document.querySelector(".loader");n&&n.remove()};m.addEventListener("submit",n=>{f(),c.innerHTML="",n.preventDefault();const i=d.value;h(i)});function h(n){const s=`https://pixabay.com/api/?key=42179520-d47d5bd3a5ac50ed017a72958&q=${n}&image_type=photo&orientation=horizontal&safesearch=true&per_page=15`;fetch(s).then(o=>{if(o.ok)return o.json();throw new Error(o.status)}).then(o=>{if(o.hits.length===0)l.error({message:"Sorry, there are no images matching your search query.<br>Please try again!</br>",position:"center",transitionIn:"fadeInLeft"}),a();else{const e=o.hits.map(r=>`
-            <li class="gallery-item"><a href="${r.largeImageURL}">
-          <img class="gallery-image" src="${r.webformatURL}" alt="${r.tags}"></a>
-          <p><b>Likes: </b>${r.likes}</p>
-          <p><b>Views: </b>${r.views}</p>
-          <p><b>Comments: </b>${r.comments}</p>
-          <p><b>Downloads: </b>${r.downloads}</p>
-          </li>`).join("");c.insertAdjacentHTML("beforeend",e),new u(".gallery a",{captions:!0,captionType:"attr",captionsData:"alt",captionPosition:"bottom",fadeSpeed:150,captionSelector:"img",captionDelay:250}).on("show.simplelightbox").refresh(),a()}}).catch(o=>console.log(o))}
+import{i as l,S as p}from"./assets/vendor-46aac873.js";(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))n(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const a of t.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&n(a)}).observe(document,{childList:!0,subtree:!0});function r(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?t.credentials="include":e.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function n(e){if(e.ep)return;e.ep=!0;const t=r(e);fetch(e.href,t)}})();const y="42179520-d47d5bd3a5ac50ed017a72958",f="https://pixabay.com/api/",m=document.querySelector(".form"),c=document.querySelector(".gallery"),i=document.querySelector(".loader");i.style.display="none";m.addEventListener("submit",g);function g(s){s.preventDefault(),i.style.display="block",c.innerHTML="";const o=s.target.image.value;h(o).then(r=>{v(r)}).catch(r=>console.log(r))}function h(s){const o=new URLSearchParams({key:y,image_type:"photo",orientation:"horizontal",safesearch:!0});return fetch(`${f}?${o}&q=${s}`).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()})}function v(s){if(!s.total){l.error({position:"topRight",message:"Sorry, there are no images matching your search query. Please try again!"}),i.style.display="none";return}l.success({position:"topRight",message:`Congratulations! We found ${s.total} images`,timeout:2e3}),L(s.hits),i.style.display="none",new p(".gallery a",{captionsData:"alt",captionDelay:250}).refresh()}function L(s){const o=s.map(({webformatURL:r,largeImageURL:n,tags:e,likes:t,comments:a,downloads:d,views:u})=>`<li class='gallery-item'>
+    <a class="gallery-link" href="${n}">
+        <img class="gallery-image" src="${r}" alt="${e}" />
+        <div class="gallery-description">
+      <span class='gallery-span'>
+        <div class="upper-text">Likes</div>
+        <div class="lower-text">${t}</div>
+      </span>
+      <span class='gallery-span'>
+        <div class="upper-text">Views</div>
+        <div class="lower-text">${u}</div>
+      </span>
+      <span class='gallery-span'>
+        <div class="upper-text">Comments</div>
+        <div class="lower-text">${a}</div>
+      </span>
+      <span class='gallery-span'>
+        <div class="upper-text">Downloads</div>
+        <div class="lower-text">${d}</div>
+      </span>
+      </div>
+        </a>
+</li>`).join("");c.insertAdjacentHTML("beforeend",o)}
 //# sourceMappingURL=commonHelpers.js.map
